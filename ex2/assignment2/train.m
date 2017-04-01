@@ -16,8 +16,8 @@ end
 
 % SET HYPERPARAMETERS HERE.
 batchsize = 100;  % Mini-batch size.
-learning_rate = 0.001;  % Learning rate; default = 0.1.
-momentum = 0.5;  % Momentum; default = 0.9.
+learning_rate = 10;  % Learning rate; default = 0.1.
+momentum = 0.9;  % Momentum; default = 0.9.
 numhid1 = 50;  % Dimensionality of embedding space; default = 50.
 numhid2 = 200;  % Number of units in hidden layer; default = 200.
 init_wt = 0.01;  % Standard deviation of the normal distribution
@@ -239,11 +239,21 @@ end
 fprintf(1, 'Training took %.2f seconds\n', diff);
 end
 
-#1 
+#2
 #Final Training CE 2.536
 #Final Validation CE 2.606
 #Final Test CE 2.617
 
-#3 5.521
+#3 2,4
 
-#5  A 4.566 B 4.405 C 3.683
+#4 5.521
+
+#5 A 4.566 B 4.405 C 3.683
+
+#6 A 4.380 B 2.936 C 3.319
+
+#7 A 2.807 B 3.007 C 2.536 D 3.224
+
+#8 A 2.829 B 3.016 C 2.604 D 3.228
+
+#9 A 3.982 sB 3.327 C 2.715
