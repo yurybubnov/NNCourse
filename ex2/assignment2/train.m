@@ -16,8 +16,8 @@ end
 
 % SET HYPERPARAMETERS HERE.
 batchsize = 100;  % Mini-batch size.
-learning_rate = 0.1;  % Learning rate; default = 0.1.
-momentum = 0.9;  % Momentum; default = 0.9.
+learning_rate = 0.001;  % Learning rate; default = 0.1.
+momentum = 0.5;  % Momentum; default = 0.9.
 numhid1 = 50;  % Dimensionality of embedding space; default = 50.
 numhid2 = 200;  % Number of units in hidden layer; default = 200.
 init_wt = 0.01;  % Standard deviation of the normal distribution
@@ -39,6 +39,8 @@ embed_to_hid_weights = init_wt * randn(numwords * numhid1, numhid2);
 hid_to_output_weights = init_wt * randn(numhid2, vocab_size);
 hid_bias = zeros(numhid2, 1);
 output_bias = zeros(vocab_size, 1);
+
+
 
 word_embedding_weights_delta = zeros(vocab_size, numhid1);
 word_embedding_weights_gradient = zeros(vocab_size, numhid1);
@@ -103,14 +105,14 @@ for epoch = 1:epochs
     % Options:
    
 %  embed_to_hid_weights_gradient = back_propagated_deriv_1' * embedding_layer_state;
-    embed_to_hid_weights_gradient = embedding_layer_state * back_propagated_deriv_1';
+   embed_to_hid_weights_gradient = embedding_layer_state * back_propagated_deriv_1';
    % embed_to_hid_weights_gradient = back_propagated_deriv_1;
    % embed_to_hid_weights_gradient = embedding_layer_state;
 
     % FILL IN CODE. Replace the line below by one of the options.
-    hid_bias_gradient = zeros(numhid2, 1);
+   hid_bias_gradient = zeros(numhid2, 1);
     % Options
-   hid_bias_gradient = sum(back_propagated_deriv_1, 2);
+  hid_bias_gradient = sum(back_propagated_deriv_1, 2);
   % hid_bias_gradient = sum(back_propagated_deriv_1, 1);
     % hid_bias_gradient = back_propagated_deriv_1;
   % hid_bias_gradient = back_propagated_deriv_1';
@@ -118,7 +120,7 @@ for epoch = 1:epochs
     % FILL IN CODE. Replace the line below by one of the options.
     back_propagated_deriv_2 = zeros(numhid2, batchsize);
     % Options
-     back_propagated_deriv_2 = embed_to_hid_weights * back_propagated_deriv_1;
+    back_propagated_deriv_2 = embed_to_hid_weights * back_propagated_deriv_1;
    %  back_propagated_deriv_2 = back_propagated_deriv_1 * embed_to_hid_weights;
  %  back_propagated_deriv_2 = back_propagated_deriv_1' * embed_to_hid_weights;
   %  back_propagated_deriv_2 = back_propagated_deriv_1 * embed_to_hid_weights';
@@ -236,3 +238,12 @@ else
 end
 fprintf(1, 'Training took %.2f seconds\n', diff);
 end
+
+#1 
+#Final Training CE 2.536
+#Final Validation CE 2.606
+#Final Test CE 2.617
+
+#3 5.521
+
+#5  A 4.566 B 4.405 C 3.683
