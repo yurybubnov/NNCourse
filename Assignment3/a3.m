@@ -180,8 +180,8 @@ function ret = d_loss_by_d_model(model, data, wd_coefficient)
  # ho = hid_output.*(1-hid_output);
  # m = (model.hid_to_class*ho).*(y-t);
  # size(m)
-  ret.input_to_hid =  model.hid_to_class'*(y-t).*(hid_output.*(1-hid_output))*data.inputs' / size(data.targets, 2);
-  ret.hid_to_class = (y-t)*hid_output'/ size(data.targets, 2);
+  ret.input_to_hid =  model.hid_to_class'*(y-t).*(hid_output.*(1-hid_output))*data.inputs' / size(data.targets, 2) + wd_coefficient* model.input_to_hid;
+  ret.hid_to_class = (y-t)*hid_output'/ size(data.targets, 2) + wd_coefficient *model.hid_to_class ;
  # size( ret.input_to_hid)
  # size( ret.hid_to_class)
   
